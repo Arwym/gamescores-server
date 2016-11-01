@@ -5,9 +5,11 @@
 This application serves an API to read and store game scores for different games. A simple front-end web interface displays the scores table for each game.
 
 ### MVP
-At this moment, we will focus on developing an API with two calls:
+At this moment, we will focus on developing an API with three main calls:
 
 #### api/scores POST
+Post a new game score.
+
 Parameters:
 - gameId: numeric
 - score: numeric
@@ -37,7 +39,7 @@ levels,
 creation_timestamp,
 update_timestamp
 
-Table: game_challenge
+Table: challenges
 id,
 game_id,
 challenge,
