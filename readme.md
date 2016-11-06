@@ -15,23 +15,23 @@ Parameters:
 - score: numeric
 - playerName: alphanumeric
 
-#### api/scores/{gameId:numeric}/
+#### api/scores/{gameId:numeric}/ GET
 Fetch all scores for specified game ID.
 
-#### api/challenges/{gameId:numeric}
+#### api/challenges/{gameId:numeric} GET
 Fetch all challenges for specified game ID.
 
 ## Database Schema
 
 Table: scores
-id,
+score_id,
 game_id,
 player_name,
 post_timestamp,
 update_timestamp
 
 Table: games
-id,
+game_id,
 title,
 code,
 description,
@@ -40,7 +40,7 @@ creation_timestamp,
 update_timestamp
 
 Table: challenges
-id,
+challenge_id,
 game_id,
 challenge,
 level
