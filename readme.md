@@ -11,14 +11,14 @@ At this moment, we will focus on developing an API with three main calls:
 Post a new game score.
 
 Parameters:
-- gameId: numeric
+- game_id: numeric
 - score: numeric
-- playerName: alphanumeric
+- player_name: alphanumeric
 
-#### api/scores/{gameId:numeric}/ GET
+#### api/scores/{game_id:numeric}(/{limit:numeric}) GET
 Fetch all scores for specified game ID.
 
-#### api/challenges/{gameId:numeric} GET
+#### api/challenges/{game_id:numeric} GET
 Fetch all challenges for specified game ID.
 
 ## Database Schema
