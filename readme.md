@@ -43,4 +43,5 @@ Table: challenges
 challenge_id,
 game_id,
 challenge,
-level
+level,
+group
