@@ -81,13 +81,14 @@ Flight::route('GET /scores/@game_id:[0-9]+(/@limit:[0-9]+)', function($game_id, 
 
 });
 
+// TO-DO: Add option to fetch random rows, and option to limit number of results
 Flight::route('GET /challenges/@game_id:[0-9](/@level:[0-9]+)', function($game_id, $level) use($db) {
 	// Establish statement
-	$query = 'SELECT * FROM challenges WHERE game_id='. $game_id;
+	$query = 'SELECT * FROM challenges WHERE game_id='. $game_id .' ';
 	if ($level) {
-		$query .= ' AND level='. $level;
+		$query .= 'AND level='. $level .' ';
 	}
-	$query .= ' ORDER BY level ASC';
+	$query .= 'ORDER BY level ASC';
 
 	$statement = $db->prepare($query);
 
