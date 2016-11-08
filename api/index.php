@@ -58,10 +58,13 @@ Flight::route('POST /scores', function() use($db) {
 Flight::route('GET /scores/@game_id:[0-9]+(/@limit:[0-9]+)', function($game_id, $limit) use($db) {
 	
 	// Establish statement
-	$query = 'SELECT * FROM scores WHERE game_id='. $game_id;
+	$query = 'SELECT * FROM scores WHERE game_id='. $game_id .' ';
+	$query .= 'ORDER BY value DESC ';
 	if ($limit > 0) {
 		$query .= 'LIMIT '. $limit;
 	}
+
+	echo $query;
 
 	$statement = $db->prepare($query);
 
