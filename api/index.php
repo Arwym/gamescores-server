@@ -18,9 +18,53 @@ try {
 // Route definitions
 
 Flight::route('/', function(){
-    echo 'Hello world! Welcome to the Game Scores Server Web Application.';
+    echo 'Hello world! Welcome to the Game Scores API.';
 });
 
+// Fetch a game's info by its Id
+Flight::route('GET /game/@game_id:[0-9]+', function($game_id) use($db) {
+	// Establish statement
+	$query = 'SELECT * FROM games WHERE game_id='. $game_id .' ';
+
+	$statement = $db->prepare($query);
+
+	try {
+		// Execute statement
+		$statement->execute();
+		// Render result
+		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+		Flight::json($result);
+	} catch(Exception $e) {
+		// Error
+		Flight::error($e);
+	}
+});
+
+// Fetch a list of games, optionally limited number
+// TO-DO: Add option to fetch random rows
+Flight::route('GET /games(/@limit:[0-9]+)', function($limit) use($db) {
+	// Establish statement
+	$query = 'SELECT * FROM games ';
+	$query .= 'ORDER BY title ASC ';
+	if ($limit > 0) {
+		$query .= 'LIMIT '. $limit .' ';
+	}
+
+	$statement = $db->prepare($query);
+
+	try {
+		// Execute statement
+		$statement->execute();
+		// Render result
+		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+		Flight::json($result);
+	} catch(Exception $e) {
+		// Error
+		Flight::error($e);
+	}
+});
+
+// Add a new game score
 Flight::route('POST /scores', function() use($db) {
 	$data = Flight::request()->data;
 
