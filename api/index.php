@@ -77,6 +77,9 @@ Flight::route('POST /scores', function() use($db) {
 		} else {
 			$player_name = 'ANON';
 		}
+		if (isset($data->meta) && !empty($data->meta)) {
+			$meta = $data->meta;
+		}
 
 		// Establish statement
 		$statement = $db->prepare('INSERT INTO scores (game_id, player_name, value) VALUES(?, ?, ?)');
@@ -86,7 +89,8 @@ Flight::route('POST /scores', function() use($db) {
 			$statement->execute(array(
 			    $game_id,
 			    $player_name,
-			    $value
+			    $value,
+			    $meta
 			));
 			// Render result
 			Flight::json(array('message' => 'Score posted successfully.'));
