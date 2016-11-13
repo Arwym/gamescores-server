@@ -1,0 +1,3 @@
+api/app_config.php
+db-schema/*.bak
+db-schema/*.beforefix
